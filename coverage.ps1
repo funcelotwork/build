@@ -7,7 +7,7 @@ $CurrentDir = Convert-Path .
 $DotNet_Version = [System.IO.File]::ReadAllText($(Join-Path -Path $CurrentDir -ChildPath ".config/DotNetCliVersion.txt"))
 
 $OpenCover_Version = "4.7.922"
-$XUnitRunnerConsole_Version = "2.4.1"
+
 # Moving from version 2.5.1 to 2.6.0 requires /p:Include=[build.*]* /p:Exclude="[xunit*]*,[build.abstractions.*]*"
 $CoverletMsbuild_Version = "2.6.0"
 
