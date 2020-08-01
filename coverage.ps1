@@ -15,7 +15,6 @@ $Tools_Path = Join-Path -Path $CurrentDir -ChildPath  "packages/tools"
 $DotNet_Path = Join-Path -Path $CurrentDir -ChildPath "packages/dotnet/$($DotNet_Version)"
 $NuGet_Path = Join-Path -Path $CurrentDir -ChildPath  "packages/nuget"
 $OpenCover_Path = Join-Path -Path $CurrentDir -ChildPath "packages/.packages/OpenCover/$($OpenCover_Version)/tools"
-$XUnitRunnerConsole_Path = Join-Path -Path $CurrentDir -ChildPath "packages/tools/xunit.runner.console.$($XUnitRunnerConsole_Version)/tools/netcoreapp2.0"
 
 Set-Item -Path Env:PATH -Value ("$($DotNet_Path);$($NuGet_Path);$($Tools_Path);$($OpenCover_Path);" + $Env:PATH)
 

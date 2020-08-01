@@ -11,18 +11,26 @@ then
 fi
 
 export CurrentDir="$(echo $(pwd))"
+echo CurrentDir=$CurrentDir
 export DotNet_Version="$(cat ${CurrentDir}/.config/DotNetCliVersion.txt)"
+echo DotNet_Version=$DotNet_Version
 export OpenCover_Version="4.7.922"
-export XUnitRunnerConsole_Version="2.4.1"
+echo OpenCover_Version=$OpenCover_Version
 
 # Moving from version 2.5.1 to 2.6.0 requires /p:Include=[build.*]* /p:Exclude="[xunit*]*,[build.abstractions.*]*"
 export CoverletMsbuild_Version="2.6.0"
+echo CoverletMsbuild_Version=$CoverletMsbuild_Version
 
 export Tools_Path="$(echo ${CurrentDir}/packages/tools)"
+echo Tools_Path=$Tools_Path
 export DotNet_Path="$(echo ${CurrentDir}/packages/dotnet/${DotNet_Version})"
+echo DotNet_Path=$DotNet_Path
 export NuGet_Path="$(echo ${CurrentDir}/packages/nuget)"
+echo NuGet_Path=$NuGet_Path
 export OpenCover_Path="$(echo ${CurrentDir}/packages/.packages/OpenCover/${OpenCover_Version}/tools)"
-export XUnitRunnerConsole_Path="$(echo ${CurrentDir}/packages/tools/xunit.runner.console.${XUnitRunnerConsole_Version}/tools/netcoreapp2.0)"
+echo OpenCover_Path=$OpenCover_Path
+
+export PATH="$DotNet_Path:$NuGet_Path:$Tools_Path:$OpenCover_Path:$PATH"
 
 dotnet add ./Build.Tests package --package-directory packages/.packages OpenCover --version $OpenCover_Version
 dotnet add ./Build.Tests package --package-directory packages/.packages coverlet.msbuild --version $CoverletMsbuild_Version

@@ -15,17 +15,18 @@
 	},
 
 	"remoteEnv": { 
-		"SONARCLOUDTOKEN": "${localEnv:SONARCLOUDTOKEN}" 
+		"SONARCLOUDTOKEN": "${localEnv:SONARCLOUDTOKEN}",
+                 "PATH": "${containerEnv:PATH}:/workspaces/build/packages/tools"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": []
+	"extensions": [] //, uncomment this to valdate JSON file correctly 
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "sh -c /workspaces/build/build.sh" //,
 
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
