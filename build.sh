@@ -7,3 +7,4 @@ sudo apt-get update; \
   sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-3.1
 sudo apt-get install -y dotnet-runtime-3.1
+rm -rf packages-microsoft-prod.deb
