@@ -21,6 +21,10 @@ Set-Item -Path Env:PATH -Value ("$($DotNet_Path);$($NuGet_Path);$($Tools_Path);$
 
 Echo $Env:PATH
 
+if([System.IO.File]::Exists($(Join-Path -Path $CurrentDir -ChildPath "sonar-project.properties"))) {
+  & copy sonar-project.properties sonar-project.properties.backup
+  & del sonar-project.properties
+}
 if(![System.IO.File]::Exists($(Join-Path -Path $CurrentDir -ChildPath "packages/tools/dotnet-sonarscanner.exe"))) {
   dotnet tool install --tool-path packages/tools dotnet-sonarscanner
 } else {
@@ -45,6 +49,11 @@ if(![System.IO.File]::Exists($(Join-Path -Path $CurrentDir -ChildPath "packages/
 
 # Try to upload to Coveralls
 & csmacnz.Coveralls --opencover -i Build.Tests/coverage.opencover.xml
+
+if(![System.IO.File]::Exists($(Join-Path -Path $CurrentDir -ChildPath "sonar-project.properties"))) {
+  & copy sonar-project.properties.backup sonar-project.properties
+  & del sonar-project.properties.backup
+}
 
 #& dotnet add Build.Tests package --package-directory packages/.packages OpenCover --version $OpenCover_Version
 #
