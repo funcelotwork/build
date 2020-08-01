@@ -31,6 +31,7 @@ export OpenCover_Path="$(echo ${CurrentDir}/packages/.packages/OpenCover/${OpenC
 echo OpenCover_Path=$OpenCover_Path
 
 export PATH="$DotNet_Path:$NuGet_Path:$Tools_Path:$OpenCover_Path:$PATH"
+echo PATH=$PATH
 
 dotnet add ./Build.Tests package --package-directory packages/.packages OpenCover --version $OpenCover_Version
 dotnet add ./Build.Tests package --package-directory packages/.packages coverlet.msbuild --version $CoverletMsbuild_Version
